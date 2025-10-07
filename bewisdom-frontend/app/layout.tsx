@@ -1,5 +1,6 @@
-import "./globals.css";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Bewisdom Cloud",
@@ -12,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-gray-50 text-gray-900">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
