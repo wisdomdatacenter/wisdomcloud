@@ -1,14 +1,17 @@
 "use client";
+
 import type { FormEvent } from "react";
 import { EyeIcon, EyeOffIcon, Field } from "./icon-auth";
 
-export default function LoginFormz({
-  showPassword,
-  setShowPassword,
-}: {
+interface Props {
   showPassword: boolean;
-  setShowPassword: (v: boolean) => void;
-}) {
+  setShowPassword: (value: boolean) => void;
+}
+
+const inputClasses =
+  "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 shadow-sm transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200/60 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:border-slate-600 dark:focus:ring-slate-700/40";
+
+export default function LoginForm({ showPassword, setShowPassword }: Props) {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -24,76 +27,52 @@ export default function LoginFormz({
           type="email"
           required
           placeholder="you@example.com"
-          className="w-full px-4 py-3 rounded-xl outline-none transition 
-          border-slate-300 shadow text-slate-600 hover:border-slate-400 
-          text-base font-middle placeholer:text-slate-500
-          dark:text-slate-300 dark:shadow dark:border-white/15
-          dark:bg-white/5 dark:placeholder:text-slate-500
-          
-          "
+          className={inputClasses}
         />
       </Field>
 
-      <Field label="Password" htmlFor="password">
-        <div className="relative text-slate-900 dark:text-slate-100">
+      <Field label="Mật khẩu" htmlFor="password">
+        <div className="relative">
           <input
             id="password"
             name="password"
             type={showPassword ? "text" : "password"}
             required
-            placeholder="Password"
-            className="w-full px-4 py-3 rounded-xl outline-none transition 
-          border-slate-300 shadow text-slate-600 hover:border-slate-400 
-          text-base font-middle placeholer:text-slate-500
-          dark:text-slate-300 dark:shadow dark:border-white/15
-          dark:bg-white/5 dark:placeholder:text-slate-500
-          "
+            placeholder="••••••••"
+            className={`${inputClasses} pr-12`}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 mr-1 inline-flex items-center
-             rounded-md px-3 text-xs
-            text-slate-700 transition hover:bg-black
-             dark:text-slate-100 dark:hover:bg-white/10"
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="absolute inset-y-0 right-2 inline-flex items-center rounded-lg px-3 text-xs text-slate-600 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800/80"
+            aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
           >
             {showPassword ? <EyeOffIcon /> : <EyeIcon />}
           </button>
         </div>
       </Field>
 
-      <div className="flex items-center justify-between">
-        <label className="inline-flex items-center gap-2 text-sm dark:text-slate-300">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+        <label className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
           <input
             type="checkbox"
             name="remember"
-            className="h-4 w-4 rounded border-slate-300 text-slate-700
-             focus:ring-indigo-200 dark:border-white/25 dark:bg-transparent
-              dark:text-indigo-200 dark:focus:ring-white/20"
+            className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-200 dark:border-slate-600 dark:bg-transparent dark:text-indigo-300 dark:focus:ring-indigo-500/40"
           />
-          Remember me
+          Ghi nhớ đăng nhập
         </label>
 
         <a
           href="#"
-          className="text-sm
-           text-indigo-900 underline decoration-dotted 
-           underline-offset-4 hover:text-indigo-800
- dark:hover:text-indigo-300"
+          className="text-indigo-600 underline decoration-dotted underline-offset-4 hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200"
         >
-          Forgot password
+          Quên mật khẩu?
         </a>
       </div>
 
       <button
         type="submit"
-        className="mt-2 w-full rounded-xl bg-gradient-to-r
-         from-indigo-600 to-fuchsia-600 px-5 py-3 
-         text-base font-medium text-white shadow-lg
-          transition hover:brightness-105 focus:outline-none 
-          focus:ring-2 focus:ring-slate-300/40 active:scale-[0.99]
-           dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-white/20"
+        className="mt-2 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 px-5 py-3 text-base font-medium text-white shadow-lg transition hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-indigo-300/60 active:scale-[0.99] dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-fuchsia-500/40"
       >
         Đăng nhập
       </button>

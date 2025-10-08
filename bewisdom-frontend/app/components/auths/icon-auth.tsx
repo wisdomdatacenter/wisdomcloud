@@ -1,5 +1,6 @@
 import React from "react";
-
+import { FaFacebook, FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 export function Field({
   label,
   htmlFor,
@@ -68,18 +69,49 @@ export function SocialButton({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className="inline-flex items-center 
-      justify-center gap-2 rounded-lg border 
-      border-slate-200 bg-white px-3 py-2 text-sm
-       text-slate-700 transition hover:bg-slate-50
-        focus:outline-none focus:ring-2 focus:ring-indigo-200
-         dark:border-white/10 dark:bg-white/5 dark:text-white
-          dark:hover:bg-white/10 dark:focus:ring-white/20"
+      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800/80 dark:focus:ring-indigo-500/40"
     >
       <span className="sr-only">Continue with</span>
       <SocialIcon />
       {label}
     </button>
+  );
+}
+export default function OAuthButtons() {
+  return (
+    <div className="grid grid-cols-3 auto-rows-[48px] gap-3">
+      <button
+        className="relative h-full w-full rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
+                     flex items-center justify-center transition
+                    dark:bg-slate-600 dark:hover:text-black
+
+                     "
+      >
+        <FaGithub className=" absolute left-4 h-5 w-5 text-[#181717]" />
+        <span className="text-sm font-medium">Continue with GitHub</span>
+      </button>
+
+      <button
+        className="relative h-full w-full rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
+                     flex items-center justify-center transition 
+                    dark:bg-slate-600 dark:hover:text-black
+                     "
+      >
+        <FcGoogle className="absolute left-4 h-5 w-5" />
+        <span className="text-sm font-medium">Continue with Google</span>
+      </button>
+
+      <button
+        className="relative h-full w-full 
+                              dark:bg-slate-600 dark:hover:text-black
+
+        rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
+                     flex items-center justify-center transition"
+      >
+        <FaFacebook className="absolute left-4 h-5 w-5 text-[#1877F2]" />
+        <span className="text-sm font-medium">Continue with Facebook</span>
+      </button>
+    </div>
   );
 }
 
