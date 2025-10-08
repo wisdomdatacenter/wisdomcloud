@@ -1,29 +1,43 @@
 "use client";
+
+import type { FormEvent } from "react";
 import { EyeIcon, EyeOffIcon, Field } from "./icon-auth";
-export default function RegisterForm({
-  showPassword,
-  setShowPassword,
-}: {
+
+interface Props {
   showPassword: boolean;
-  setShowPassword: (v: boolean) => void;
-}) {
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  setShowPassword: (value: boolean) => void;
+}
+
+const inputClasses =
+  "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 shadow-sm transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200/60 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:border-slate-600 dark:focus:ring-slate-700/40";
+
+export default function RegisterForm({ showPassword, setShowPassword }: Props) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    // TODO: replace with your real sign-up logic
     console.log("register", Object.fromEntries(form.entries()));
   }
+  const inputCls =
+    "w-full rounded-xl border px-4 py-3 text-base outline-none transition " +
+    "bg-white border-slate-300 text-slate-800 placeholder:text-slate-500 " +
+    "focus:border-slate-400 focus:ring-2 focus:ring-slate-300/40 " +
+    "dark:border-white/15 dark:bg-white/10 dark:text-slate-100 " +
+    "dark:placeholder:text-slate-400 dark:focus:border-white/20 dark:focus:ring-white/20";
+  const iconBtnCls =
+    "absolute inset-y-0 right-0 mr-1 inline-flex items-center rounded-md px-3 text-xs " +
+    "text-slate-600 transition hover:bg-slate-200/60 " +
+    "dark:text-slate-100 dark:hover:bg-white/10";
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <Field label="Full name" htmlFor="name">
+      <Field label="Họ và tên" htmlFor="name">
         <input
           id="name"
           name="name"
           type="text"
           required
-          placeholder="Nguyen Van A"
-          className="auth-input"
+          placeholder="Nguyễn Văn A"
+          className={inputClasses}
         />
       </Field>
 
@@ -34,11 +48,11 @@ export default function RegisterForm({
           type="email"
           required
           placeholder="you@example.com"
-          className="auth-input"
+          className={inputClasses}
         />
       </Field>
 
-      <Field label="Password" htmlFor="reg-password">
+      <Field label="Mật khẩu" htmlFor="reg-password">
         <div className="relative">
           <input
             id="reg-password"
@@ -46,42 +60,45 @@ export default function RegisterForm({
             type={showPassword ? "text" : "password"}
             required
             minLength={6}
-            placeholder="At least 6 characters"
-            className="auth-input pr-12"
+            placeholder="Ít nhất 6 ký tự"
+            className={`${inputClasses} pr-12`}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 mr-1 inline-flex items-center rounded-md px-3 text-xs text-slate-200 hover:bg-white/10"
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="absolute inset-y-0 right-2 inline-flex items-center rounded-lg px-3 text-xs text-slate-600 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800/80"
+            aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
           >
             {showPassword ? <EyeOffIcon /> : <EyeIcon />}
           </button>
         </div>
       </Field>
 
-      <Field label="Confirm password" htmlFor="confirm">
+      <Field label="Nhập lại mật khẩu" htmlFor="confirm">
         <input
           id="confirm"
           name="confirm"
           type={showPassword ? "text" : "password"}
           required
-          placeholder="Re-enter password"
-          className="auth-input"
+          placeholder="Nhập lại mật khẩu"
+          className={inputClasses}
         />
       </Field>
 
-      <label className="mt-2 inline-flex items-start gap-2 text-xs text-slate-300">
+      <label className="my-2 inline-flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300">
         <input
           type="checkbox"
           required
-          className="mt-0.5 h-4 w-4 rounded border-white/20 bg-transparent"
+          className="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-200 dark:border-slate-600 dark:bg-transparent dark:text-indigo-300 dark:focus:ring-indigo-500/40"
         />
-        I agree to the Terms and Privacy Policy
+        Tôi đồng ý với Điều khoản dịch vụ và Chính sách bảo mật
       </label>
 
-      <button type="submit" className="btn-primary w-full">
-        Create account
+      <button
+        type="submit"
+        className="mt-2 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 px-5 py-3 text-base font-medium text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-indigo-300/60 active:scale-[0.99] dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-fuchsia-500/40"
+      >
+        Tạo tài khoản
       </button>
     </form>
   );
