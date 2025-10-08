@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
+import Providers from "./components/auths/themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,8 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-gray-50 text-gray-900">
-        <ThemeProvider>{children}</ThemeProvider>
+      <head>
+        <meta name="color-scheme" content="dark light" />
+      </head>
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

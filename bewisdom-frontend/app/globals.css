@@ -1,9 +1,24 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  --app-bg:      248 250 252;  /* nền tổng thể (light) */
+  --app-text:     15  23  42;  /* chữ tổng thể (light) */
+  --app-muted:   100 116 139;  /* chữ phụ (light) */
+  --card-bg:     255 255 255;  /* bề mặt card (light) */
+  --card-border: 203 213 225;  /* viền (light) */
+  --brand-1:      79  70 229;  /* indigo-600 */
+  --brand-2:     217  70 239;  /* fuchsia-500 */
 }
+.dark{
+  --app-bg:        2   6  23;  /* nền tổng thể (dark) */
+  --app-text:     241 245 249; /* chữ tổng thể (dark) */
+  --app-muted:    148 163 184; /* chữ phụ (dark) */
+  --card-bg:       15  23  42; /* bề mặt card (dark) */
+  --card-border:    51  65  85;/* viền (dark) */
+  --brand-1:       99 102 241; /* indigo-500 */
+  --brand-2:      232 121 249; /* fuchsia-400 */
+}
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,23 +27,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-medium text-white
-           bg-gradient-to-r from-indigo-600 to-fuchsia-600 shadow-lg transition
-           hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-slate-300/40 active:scale-[0.99]
-           dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-white/20;
+@layer base {
+  body {
+    background-color: rgb(var(--app-bg));
+    color: rgb(var (--app-text));
   }
+}
+@layer components{
+  .text-muted{ color: rgb(var(--app-muted)); }
+  .card{ @apply rounded-3xl p-8 lg:p-10 shadow-xl backdrop-blur;
+         background-color: rgb(var(--card-bg) / .8);
+         border: 1px solid rgb(var(--card-border)); }
+  .tabs{ @apply inline-flex p-2 text-sm rounded-full;
+         border: 1px solid rgb(var(--card-border));
+         background-color: rgb(var(--card-bg) / .85); }
+  .tab{ @apply rounded-full px-4 py-2 transition; color: rgb(var(--app-text) / .9); }
+  .tab--on{ @apply shadow; background-color: rgb(var(--card-bg)); color: rgb(var(--app-text)); }
+  .btn-primary{ @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-medium text-white shadow-lg transition active:scale-[0.99];
+                background-image: linear-gradient(90deg, rgb(var(--brand-1)), rgb(var(--brand-2))); }
 }
