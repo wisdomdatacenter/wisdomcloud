@@ -1,39 +1,12 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Khai báo nguồn để Tailwind v4 quét class (an toàn cho monorepo/app dir) */
+@source "./app/**/*.{js,jsx,ts,tsx,mdx}";
+@source "./components/**/*.{js,jsx,ts,tsx,mdx}";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Chuyển dark: sang selector bạn kiểm soát (khỏi bị OS “đè”) */
+@custom-variant dark (&:where(.dark, [data-theme="dark"], .dark *, [data-theme="dark"] *));
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-medium text-white
-           bg-gradient-to-r from-indigo-600 to-fuchsia-600 shadow-lg transition
-           hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-slate-300/40 active:scale-[0.99]
-           dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-white/20;
-  }
-}
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Bạn có thể thêm class tiện ích chung ở đây */
+/* Đồng bộ native UI với theme thực */
+:root { color-scheme: light; }
+.dark, [data-theme="dark"] { color-scheme: dark; }
