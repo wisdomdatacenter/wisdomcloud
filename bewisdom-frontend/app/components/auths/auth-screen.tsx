@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import OAuthButtons, { Divider, Footer } from "./icon-auth";
 import LoginForm from "./login-form";
+import LogoPanel from "./logo-panel";
 import RegisterForm from "./register-form";
 import ThemeToggle from "./theme-buttons";
 
@@ -22,7 +23,7 @@ export default function AuthScreen({ initialTab = "login" }: Props) {
   return (
     <main
       className={
-        "relative min-h-screen w-full overflow-hidden transition-colors bg-auth " +
+        "relative min-h-screen w-full overflow-hidden transition-colors" +
         (!mounted
           ? "bg-white text-slate-900"
           : isDark
@@ -30,12 +31,12 @@ export default function AuthScreen({ initialTab = "login" }: Props) {
           : "bg-gradient-to-br from-slate-50 via-slate-100 to-slate-100 text-slate-900")
       }
     >
-      <div
-        className="relative z-10 mx-auto flex min-h-screen max-w-7xl 
-      items-center justify-center px-4 py-12"
-      >
-        <div className="w-full flex items-center justify-center">
-          <section className="card w-full max-w-[960px] mx-auto ">
+      <div className="grid min-h-svh lg:grid-cols-2">
+        <section
+          className="relative flex items-center 
+         justify-center px-4 lg:px-8 dark:bg-gray-900 "
+        >
+          <div className="w-full max-w-[460px] mx-auto">
             <header className="mb-6 flex items-center justify-between">
               <div>
                 <h1 className=" text-3xl md:text-4xl font-semibold tracking-tight">
@@ -45,7 +46,6 @@ export default function AuthScreen({ initialTab = "login" }: Props) {
                   Sign in or create a new account
                 </p>
               </div>
-              <ThemeToggle />
             </header>
 
             <div
@@ -111,10 +111,16 @@ export default function AuthScreen({ initialTab = "login" }: Props) {
                 Policy
               </a>
             </p>
-          </section>
-        </div>
+          </div>
+          <Footer />
+        </section>
+        <aside className="relative hidden lg:block  border-white/10/50 dark:border-white/10">
+          <LogoPanel />
+        </aside>
       </div>
-      <Footer />
+      <div className="fixed top-6 right-6 overflow-x-hidden ">
+        <ThemeToggle />
+      </div>
     </main>
   );
 }

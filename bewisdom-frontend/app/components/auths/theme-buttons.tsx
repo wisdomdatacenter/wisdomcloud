@@ -16,11 +16,11 @@ export default function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="rounded-xl border px-3 py-2 text-sm
                  border-slate-300 dark:border-white/20
-                 hover:bg-slate-100 dark:hover:bg-white/10"
+                 hover:bg-slate-800/5 dark:hover:bg-white/10"
       aria-label="Toggle theme"
       title="Toggle theme"
     >
-      {isDark ? "🌙 Dark" : "☀️ Light"}
+      {isDark ? "🌙" : "☀️"}
     </button>
   );
 }

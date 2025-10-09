@@ -72,7 +72,10 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
 
       <button
         type="submit"
-        className="mt-2 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 px-5 py-3 text-base font-medium text-white shadow-lg transition hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-indigo-300/60 active:scale-[0.99] dark:from-indigo-500 dark:to-fuchsia-500 dark:focus:ring-fuchsia-500/40"
+        className="mt-2 w-full bg-indigo-400 rounded-lg
+        items-center justify-center font-medium gap-2 transition
+        px-4 py-3 shadow-xs hover:bg-indigo-500 disabled:bg-indigo-200
+      "
       >
         Đăng nhập
       </button>
