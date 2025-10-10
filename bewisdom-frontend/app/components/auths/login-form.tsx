@@ -27,19 +27,19 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
           type="email"
           required
           placeholder="you@example.com"
-          className={`${inputClasses} `}
+          className={`${inputClasses} hover:ring-1 hover:ring-slate-500`}
         />
       </Field>
 
       <Field label="Mật khẩu" htmlFor="password">
-        <div className="relative hover:bg-slate-400">
+        <div className="relative ">
           <input
             id="password"
             name="password"
             type={showPassword ? "text" : "password"}
             required
             placeholder="••••••••"
-            className={`${inputClasses} pr-12`}
+            className={`${inputClasses} pr-12 hover:ring-1 hover:ring-slate-500`}
           />
           <button
             type="button"

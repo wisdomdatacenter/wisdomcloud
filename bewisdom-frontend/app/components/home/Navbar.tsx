@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Search, Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [solid, setSolid] = useState(false);
@@ -47,13 +47,22 @@ export default function Navbar() {
 
           {/* NAV LINKS */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#features" className="text-brand-sub hover:text-white transition">
+            <a
+              href="#features"
+              className="text-brand-sub hover:text-white transition"
+            >
               Tính năng
             </a>
-            <a href="#plans" className="text-brand-sub hover:text-white transition">
+            <a
+              href="#plans"
+              className=" text-brand-sub dark:hover:text-white transition"
+            >
               Bảng giá
             </a>
-            <a href="#faq" className="text-brand-sub hover:text-white transition">
+            <a
+              href="#faq"
+              className="text-brand-sub hover:text-white transition"
+            >
               Hỏi đáp
             </a>
 
