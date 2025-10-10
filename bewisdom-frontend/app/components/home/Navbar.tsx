@@ -55,7 +55,7 @@ export default function Navbar() {
             </a>
             <a
               href="#plans"
-              className=" text-brand-sub dark:hover:text-white transition"
+              className=" text-brand-sub hover:text-g dark:hover:text-white transition"
             >
               Bảng giá
             </a>
