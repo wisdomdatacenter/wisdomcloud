@@ -19,7 +19,7 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-4 ">
       <Field label="Email" htmlFor="email">
         <input
           id="email"
@@ -27,12 +27,12 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
           type="email"
           required
           placeholder="you@example.com"
-          className={inputClasses}
+          className={`${inputClasses} `}
         />
       </Field>
 
       <Field label="Mật khẩu" htmlFor="password">
-        <div className="relative">
+        <div className="relative hover:bg-slate-400">
           <input
             id="password"
             name="password"
@@ -44,7 +44,10 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-2 inline-flex items-center rounded-lg px-3 text-xs text-slate-600 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800/80"
+            className="absolute inset-5  inline-flex items-center 
+            rounded-lg  text-xs text-slate-600 
+            transition 
+             dark:text-slate-200 "
             aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
           >
             {showPassword ? <EyeOffIcon /> : <EyeIcon />}

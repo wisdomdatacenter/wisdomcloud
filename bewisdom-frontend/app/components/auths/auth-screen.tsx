@@ -118,7 +118,7 @@ export default function AuthScreen({ initialTab = "login" }: Props) {
           <LogoPanel />
         </aside>
       </div>
-      <div className="fixed top-6 right-6 overflow-x-hidden ">
+      <div className="fixed top-6 right-6 md:hidden ">
         <ThemeToggle />
       </div>
     </main>
