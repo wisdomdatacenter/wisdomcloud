@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @source "./app/**/*.{js,jsx,ts,tsx,mdx}";
 @source "./components/**/*.{js,jsx,ts,tsx,mdx}";
@@ -8,3 +11,131 @@
 /* Đồng bộ native UI với theme thực */
 :root { color-scheme: light; }
 .dark, [data-theme="dark"] { color-scheme: dark; }
+.neon-text {
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.35),
+    0 0 22px rgba(18,214,197,.25),
+    0 0 44px rgba(18,214,197,.18);
+}
+.grid-columns {
+  background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 33.333% 100%;
+}
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #0f172a;   /* chữ chính (sáng ở light) */
+  --sub: #475569;    /* chữ phụ */
+  --primary: #12d6c5;
+  --primary2: #0ec1b2;
+  --border: rgba(15,23,42,.08);
+}
+html.dark {
+  --bg: #0b1016;
+  --surface: #11161b;
+  --text: #e6edf3;   /* chữ chính (rất sáng ở dark) */
+  --sub: #9fb2c7;    /* chữ phụ */
+  --primary: #12d6c5;
+  --primary2: #0ec1b2;
+  --border: rgba(255,255,255,.08);
+}
+:root { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+/* =========================
+   Helper dùng lại
+   ========================= */
+.bg-app { background-color: var(--bg); }
+.bg-surface { background-color: var(--surface); }
+.text-app { color: var(--text); }
+.text-sub { color: var(--sub); }
+.border-app { border-color: var(--border); }
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 6px 24px rgba(2,6,23,.08);
+}
+html.dark .card { box-shadow: 0 10px 28px rgba(18,214,197,.06); }
+.section {
+  background-image: linear-gradient(to bottom, rgba(15,23,42,.03), transparent);
+}
+html.dark .section {
+  background-image: linear-gradient(to bottom, transparent, rgba(255,255,255,.03));
+}
+::selection { background: rgba(18,214,197,.28); color: #fff; }
+
+/* =========================
+   CHỮ – tương phản & nổi bật
+   ========================= */
+@layer base {
+  html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11","ss01","ss02";
+    color: var(--text); /* mặc định chữ chính */
+  }
+  /* Heading: cực rõ, đối lập mạnh */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  h1 { @apply text-4xl md:text-5xl font-extrabold; }
+  h2 { @apply text-3xl md:text-4xl font-bold; }
+  h3 { @apply text-2xl font-semibold; }
+
+  /* Đoạn văn & mô tả: dịu hơn để heading nổi bật */
+  p { color: var(--sub); line-height: 1.7; }
+  small, .muted { color: var(--sub); }
+
+  /* Link: màu nhấn mạnh, hover gạch chân để SEO/UX rõ */
+  a {
+    color: var(--primary);
+    text-underline-offset: 3px;
+  }
+  a:hover { text-decoration: underline; }
+
+  /* Hr / blockquote / code: tách bạch */
+  hr { border-color: var(--border); }
+  blockquote {
+    color: var(--sub);
+    border-left: 3px solid var(--primary);
+    padding-left: .9rem;
+  }
+  code, kbd, pre {
+    background: color-mix(in oklab, var(--surface) 85%, var(--text) 15%);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: .375rem;
+  }
+  input::placeholder, textarea::placeholder { color: var(--sub); }
+}
+
+/* Eyebrow: nhãn nhỏ trên heading */
+.eyebrow {
+  color: var(--primary);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 600;
+}
+
+/* Neon giữ nguyên, chỉ tối ưu ánh sáng */
+.neon-text {
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.25),
+    0 0 22px rgba(18,214,197,.22),
+    0 0 44px rgba(18,214,197,.14);
+}
+html.dark .neon-text {
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.35),
+    0 0 24px rgba(18,214,197,.28),
+    0 0 48px rgba(18,214,197,.18);
+}
+
+/* Grid cột nền */
+.grid-columns {
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px);
+  background-size: 33.333% 100%;
+}
