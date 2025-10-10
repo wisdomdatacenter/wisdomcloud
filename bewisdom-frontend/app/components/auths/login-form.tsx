@@ -44,9 +44,11 @@ export default function LoginForm({ showPassword, setShowPassword }: Props) {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-5  inline-flex items-center 
+            className="absolute top-1/2 justify-center 
+            -translate-y-1/2
+            inline-flex items-center 
             rounded-lg  text-xs text-slate-600 
-            transition 
+            transition right-3 
              dark:text-slate-200 "
             aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
           >
