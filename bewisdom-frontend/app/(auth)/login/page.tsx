@@ -22,7 +22,7 @@ export default function LoginPage() {
   return (
     <div>
       <div className="items-center justify-center ">
-        <AuthScreen initialTab="login"></AuthScreen>;
+        <AuthScreen initialTab="login"></AuthScreen>
       </div>
     </div>
   );

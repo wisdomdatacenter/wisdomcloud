@@ -11,7 +11,7 @@ export function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 ">
       <label
         htmlFor={htmlFor}
         className="block text-sm font-medium text-slate-700 dark:text-slate-200"
@@ -79,37 +79,42 @@ export function SocialButton({ label }: { label: string }) {
 }
 export default function OAuthButtons() {
   return (
-    <div className="grid grid-cols-3 auto-rows-[48px] gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-3 my-auto auto-rows-auto gap-3 ">
       <button
-        className="relative h-full w-full rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
-                     flex items-center justify-center transition
-                    dark:bg-slate-600 dark:hover:text-black
-
+        className=" relative inline-flex w-full justify-center items-center
+                    rounded-full md:h-12
+                    dark:bg-slate-700 dark:hover:text-black
+                    dark:hover:bg-slate-500 h-12 
+                     bg-slate-500/5 hover:bg-slate-200 px-4
                      "
       >
-        <FaGithub className=" absolute left-4 h-5 w-5 text-[#181717]" />
-        <span className="text-sm font-medium">Continue with GitHub</span>
+        <FaGithub className=" absolute left-4 h-auto w-5 text-[#181717]" />
+        <span className="text-sm font-medium content-center justify-center items-center">
+          GitHub
+        </span>
       </button>
 
       <button
-        className="relative h-full w-full rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
-                     flex items-center justify-center transition 
-                    dark:bg-slate-600 dark:hover:text-black
+        className=" relative inline-flex w-full justify-center items-center
+                    rounded-full md:h-12
+                    dark:bg-slate-700 dark:hover:text-black
+                    dark:hover:bg-slate-500 h-12 
+                     bg-slate-500/5 hover:bg-slate-200 px-4
                      "
       >
-        <FcGoogle className="absolute left-4 h-5 w-5" />
-        <span className="text-sm font-medium">Continue with Google</span>
+        <FcGoogle className="absolute left-3" />
+        <span className="text-sm font-medium ">Google</span>
       </button>
 
       <button
-        className="relative h-full w-full 
-                              dark:bg-slate-600 dark:hover:text-black
-
-        rounded-xl bg-slate-500/5 hover:bg-slate-200 px-4
-                     flex items-center justify-center transition"
+        className="relative inline-flex w-full justify-center items-center
+                    rounded-full md:h-12 h-12
+                    dark:bg-slate-700 dark:hover:text-black
+                    dark:hover:bg-slate-500
+                     bg-slate-500/5 hover:bg-slate-200 px-4"
       >
-        <FaFacebook className="absolute left-4 h-5 w-5 text-[#1877F2]" />
-        <span className="text-sm font-medium">Continue with Facebook</span>
+        <FaFacebook className="absolute left-3 text-[#1877F2]" />
+        <span className="text-sm font-mediums">Facebook</span>
       </button>
     </div>
   );
