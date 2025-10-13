@@ -42,7 +42,7 @@ public class MailServiceImpl implements MailService {
             helper.setFrom(mailProps.getFrom());
             helper.setTo(toEmail);
             helper.setSubject(subject);
-            helper.setText(htmlBody);
+            helper.setText(htmlBody, true);
             mailSender.send(msg);
             log.info("Mail sent to {} ", toEmail);
         }
