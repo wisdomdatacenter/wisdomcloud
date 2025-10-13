@@ -14,13 +14,12 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
-    private static final String[] publicEndpoints = {
+    private static final String[] swaggerEndpoints = {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/swagger",
+            "/swagger/**",
             "/docs/**",
-            "/auth/**"
     };
 
     // Cho phép gọi /auth/** không cần auth; các API khác có thể bảo vệ sau
@@ -28,10 +27,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(publicEndpoints).permitAll()
+                .requestMatchers(swaggerEndpoints).permitAll()
+                .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
         );
-        http.httpBasic(Customizer.withDefaults());
+        http.httpBasic(AbstractHttpConfigurer::disable);
+        http.formLogin(AbstractHttpConfigurer::disable);
         return http.build();
     }
 }

@@ -27,9 +27,32 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      backend:
+      - backend
 
-volumes:
+  redis:
+    image: redis:7.4-alpine
+    command: [
+      "redis-server",
+      "--save", "",
+      "--appendonly", "no",
+      "--maxmemory", "128mb",
+      "--maxmemory-policy", "allkeys-lru",
+      "--databases", "1",
+      "--port", "6379"
+    ]
+    ports:
+      - "6380:6379"
+    networks:
+      - backend
+    tmpfs:
+      - /data:size=64m
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   mysql3456-data:
 networks:
   backend:
