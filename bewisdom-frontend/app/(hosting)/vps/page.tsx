@@ -133,14 +133,22 @@ export default function VpsPage() {
         Tổng quan máy chủ, trạng thái và thông số.
       </p>
       <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+      <div className='mt-4 px-4 flex justify-end '>
+        <button className='border rounded-2xl inline-flex items-center gap-1
+         border-white/10 bg-white/10
+          px-3 py-2 text-sm text-neutral-200 hover:bg-slate-700 transition
+        '>
+          + Add VPS
+        </button>
+      </div>
       <div>
           <div className=' relative mt-8 
           mx-auto gap-4 grid grid-cols-1 sm:grid-cols-2
-          max-w-7xl auto-rows-fr
+           sm:px-4 max-w-max auto-rows-fr
           lg:grid-cols-3 items-center justify-center 
-          sm:gap-6 px-4
-          md:grid-cols-2 xl:grid-cols-3  
+          sm:gap-6 px-3
+          md:grid-cols-2 xl:grid-cols-4 
+          xl:p-0 xl:gap-8 xl:gap-x-8 
           '>
             {MOCK_VPS.map((r, i) => (
               <article key={i}
@@ -205,9 +213,24 @@ export default function VpsPage() {
                       Private: {r.ipPrivate}
                     </span>
                   )}
-               
+             
                 </div>
-               
+                <div className='mt-auto   justify-end flex items-center gap-3 '>
+                  <button className='border rounded-lg px-3 py-1
+                      text-xs boder border-white/10 bg-white/5
+                      text-neutral-200 hover:bg-white/10 transition
+                  ' >
+                    Edit
+                  </button>
+                   <button className='border mt-auto rounded-lg px-3 py-1
+                      text-xs boder border-white/10 
+                       hover:bg-white/10 transition
+                      bg-rose-500/10 text-rose-400 ring-1 ring-inset
+                      ring-rose-500/20 hover:ring-rose-500/15
+                  ' >
+                    Delete
+                  </button>
+                </div>
               </article>
             ))}
           </div>
