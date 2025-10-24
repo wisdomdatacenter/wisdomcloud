@@ -5,7 +5,7 @@ type AuthState = {
   setToken: (t: string | null) => void;
 };
 
-export const useAuthStore = create<AuthState>(set => ({
+export const useAuthStore = create<AuthState>()((set) => ({
   token: null,
-  setToken: (t) => set({ token: t }),
+  setToken: (t) => set({ token: t }), // t được suy luận là string | null
 }));
