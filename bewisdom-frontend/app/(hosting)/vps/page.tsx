@@ -1,4 +1,8 @@
 import { Vps, VpsStatus } from '@/app/(hosting)/mockdata/mockvps'
+import InventoryHeader from '@/app/components/hosting/InventoryHeader';
+import { VpsCard } from '@/app/components/hosting/VpsCard';
+import { VpsGrid } from '@/app/components/hosting/VpsGrid';
+import VpsIpChips from '@/app/components/hosting/VpsIpChips';
 import React from 'react'
 
 const MOCK_VPS: Vps[] = [
@@ -121,120 +125,22 @@ const MOCK_VPS: Vps[] = [
 export default function VpsPage() {
   
   const rows = MOCK_VPS;
-  return (
-    <div className='px-3 py-4 mx-3 '>
-      <h1 className="text-3xl font-extrabold tracking-tight mt-4 sm:text-3xl">
-        VPS Inventory
-        <span className="ml-2 align-middle rounded-full bg-white/10 px-2 py-0.5 text-xs text-neutral-300">
-          {rows.length} servers
-        </span>
-      </h1>
-      <p className="mt-1 text-sm text-neutral-400">
-        Tổng quan máy chủ, trạng thái và thông số.
-      </p>
-      <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className='mt-4 px-4 flex justify-end '>
-        <button className='border rounded-2xl inline-flex items-center gap-1
-         border-white/10 bg-white/10
-          px-3 py-2 text-sm text-neutral-200 hover:bg-slate-700 transition
-        '>
-          + Add VPS
-        </button>
-      </div>
-      <div>
-          <div className=' relative mt-8 
-          mx-auto gap-4 grid grid-cols-1 sm:grid-cols-2
-           sm:px-4 max-w-max auto-rows-fr
-          lg:grid-cols-3 items-center justify-center 
-          sm:gap-6 px-3
-          md:grid-cols-2 xl:grid-cols-4 
-          xl:p-0 xl:gap-8 xl:gap-x-8 
-          '>
-            {MOCK_VPS.map((r, i) => (
-              <article key={i}
-              className='card group relative p-4 justify-center items-center
-              rounded-2xl w-full h-full bg-white/5 backdrop-blur-sm
-              transition border border-white/10 shadow-sm ease-out 
-              hover:-translate-y-2 hover:shadow-lg
-              ring-1 hover:ring-2 hover:ring-white/20
-              sm:p-5 lg:p-6
-           '
-              >       
-                <div className='mb-3 h-5 text-xs font-semibold text-sub'>
-                  {r.assignedService ?? '\u00A0'}
-                </div>        
-                <div className='relative w-full'> 
-                  <div className='flex items-center gap-2'> 
-                    <h2 className='text-lg font-semibold'>
-                      {r.hostname}
-                    </h2>
-                    <span className='mx-auto font-bold flex items-center gap-1'>
-                    Status: {r.status}
-                    </span>
-                  </div>
-                </div>
-               <div className='mt-1 text-sm text-sub flex items-center gap-2'> 
-                <span>{r.provider}</span>
-                <span className='opacity-60' ></span >
-                <span>{r.region}</span>
-               </div>
-               
-                <div className='relative grid grid-cols-2 mt-3 gap-y-1 text-sm'>
-                  <span className='relative text-neutral-500 dark:text-neutral-400'>
-                    CPU: <b className='tabular-nums'>{r.cpuCores}</b>
-                  </span >
-                  <span className='relative text-neutral-500 dark:text-neutral-400'>
-                    RAM: <b className='tabular-nums'> {r.ramGb}</b>
-                  </span>
-                   <span className='relative text-neutral-500 dark:text-neutral-400'>
-                    RAM: <b className='tabular-nums'> {r.storageGb}</b>
-                  </span>
-                  <span className='relative text-neutral-500 dark:text-neutral-400'>
-                    OS: <b className='tabular-nums'>{r.os}</b>
-                  </span>
-                  
-                </div>
-                   <div className='mt-1 py-2'>
-                  <span className='text-sub text-xs '>
-                    Last update: {r.updatedAt}
-                  </span>
-                </div>
-
-                <div className='mt-3 flex flex-wrap items-center gap-2 text-xs text-sub' >
-                  {r.ipPublic && (
-                    <span className='rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10'> 
-                      Public: {r.ipPublic}
-                    </span>
-                  )}
-                </div>
-                <div className='mt-3 flex flex-wrap items-center gap-2 text-xs text-sub' >
-                  {r.ipPrivate && (
-                    <span className='rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10'> 
-                      Private: {r.ipPrivate}
-                    </span>
-                  )}
-             
-                </div>
-                <div className='mt-auto   justify-end flex items-center gap-3 '>
-                  <button className='border rounded-lg px-3 py-1
-                      text-xs boder border-white/10 bg-white/5
-                      text-neutral-200 hover:bg-white/10 transition
-                  ' >
-                    Edit
-                  </button>
-                   <button className='border mt-auto rounded-lg px-3 py-1
-                      text-xs boder border-white/10 
-                       hover:bg-white/10 transition
-                      bg-rose-500/10 text-rose-400 ring-1 ring-inset
-                      ring-rose-500/20 hover:ring-rose-500/15
-                  ' >
-                    Delete
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-      </div>
+   return (
+    <div className="py-4 mx-auto max-w-screen px-3 sm:px-4 lg:px-6 xl:px-4 2xl:px-0">
+      <InventoryHeader total={rows.length} onAdd={() => {/* open modal */}} />
+      <VpsGrid>
+        {rows.map(r => (
+          <VpsCard
+            key={r.id}
+            r={r}
+            onEdit={() => {/* open edit modal(r) */}}
+            onDelete={() => {/* confirm & delete(r) */}}
+          />
+        ))}
+      </VpsGrid>
     </div>
   )
 }
+
+
+

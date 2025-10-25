@@ -1,5 +1,5 @@
 export type VpsStatus = 'ACTIVE' | 'MAINTENANCE' | 'ARCHIVED'
-
+export type Currency = 'USD' | 'VND'
 export interface Vps {
   id: number
   hostname: string
@@ -14,7 +14,7 @@ export interface Vps {
   purpose?: string | null
   assignedService?: string | null
   monthlyCost?: number | null
-  currency?: string | null 
+  currency?: Currency | null 
   status: VpsStatus
   updatedAt?: string | null 
   archivedAt?: string | null 
