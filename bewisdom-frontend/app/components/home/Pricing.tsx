@@ -1,5 +1,8 @@
 "use client";
 
+import { Vps } from "@/app/(hosting)/mockdata/mockvps";
+import { VpsCard } from "@/app/components/hosting/VpsCard";
+
 const plans = [
   {
     name: "Starter",
@@ -89,6 +92,7 @@ export default function Pricing() {
             </article>
           ))}
         </div>
+       
       </div>
     </section>
   );
