@@ -8,6 +8,8 @@ import Pricing from "./components/home/Pricing";
 import FAQ from "./components/home/FAQ";
 import CTA from "./components/home/CTA";
 import Footer from "./components/home/Footer";
+import { MOCK_VPS } from "@/app/(hosting)/mockdata/mockvps";
+import HomeVpsGrid from "@/app/components/home/HomeVpsGrid";
 
 export default function HomePage() {
   return (
@@ -19,7 +21,8 @@ export default function HomePage() {
         <Hero />
         <Brands />
         <Features />
-        <Pricing />
+        <Pricing/>
+        <HomeVpsGrid vps={MOCK_VPS}/>
         <FAQ />
         <CTA />
       </main>
